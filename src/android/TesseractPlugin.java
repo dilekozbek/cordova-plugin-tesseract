@@ -32,9 +32,9 @@ import android.util.Log;
 import android.content.Context;
 
 public class TesseractPlugin extends CordovaPlugin {
-    public static final String DATA_PATH = "./";
+    public static final String DATA_PATH = Environment.getDataDirectory().toString() + "/OCRFolder/";
     private static final String TAG = "TesseractPlugin";
-    private String lang = "por";
+    private String lang = "eng";
 
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
@@ -130,7 +130,7 @@ public class TesseractPlugin extends CordovaPlugin {
     }
 
     public String listFilesInDataPath() {
-        File dataPath = new File(DATA_PATH);
+        File dataPath = new File(Environment.getDataDirectory().toString() + "/");
         StringBuilder fileList = new StringBuilder();
 
         if (dataPath.isDirectory()) {
@@ -183,8 +183,7 @@ public class TesseractPlugin extends CordovaPlugin {
 
         @Override
         protected void onPostExecute(String message) {
-            // process message
-            Log.v(TAG, "Download and copy done! Nothing else to do.");
+                 Log.v(TAG, "Download and copy done! Nothing else to do.");
         }
     }
 }
