@@ -32,7 +32,7 @@ import android.util.Log;
 import android.content.Context;
 
 public class TesseractPlugin extends CordovaPlugin {
-    public static final String DATA_PATH = Environment.getDataDirectory().toString() + "/OCRFolder/";
+    public static final String DATA_PATH = Environment.getStorageDirectory().toString() + "/OCRFolder/";
     private static final String TAG = "TesseractPlugin";
     private String lang = "eng";
 
@@ -127,24 +127,6 @@ public class TesseractPlugin extends CordovaPlugin {
         } else
             Log.v(TAG, "Found existing tessdata");
         return "Ok";
-    }
-
-    public String listFilesInDataPath() {
-        File dataPath = new File(Environment.getDataDirectory().toString() + "/");
-        StringBuilder fileList = new StringBuilder();
-
-        if (dataPath.isDirectory()) {
-            File[] files = dataPath.listFiles();
-            if (files != null) {
-                for (File file : files) {
-                    fileList.append(file.getName()).append("\n");
-                }
-            }
-        } else {
-            fileList.append("Data path is not a directory.");
-        }
-
-        return fileList.toString();
     }
 
     private class DownloadAndCopy extends AsyncTask<String, Void, String> {
