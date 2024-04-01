@@ -32,10 +32,16 @@ import android.util.Log;
 import android.content.Context;
 
 public class TesseractPlugin extends CordovaPlugin {
-    public static final String DATA_PATH = cordova.getActivity().getResources().getIdentifier("www", "drawable",
-            cordova.getActivity().getPackageName());
+    public static final String DATA_PATH;
     private static final String TAG = "TesseractPlugin";
     private String lang = "eng";
+
+    @Override
+    public void initialize(CordovaInterface cordova, CordovaWebView webView) {
+        super.initialize(cordova, webView);
+        DATA_PATH = cordova.getActivity().getResources().getIdentifier("www", "drawable",
+                cordova.getActivity().getPackageName());
+    }
 
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
