@@ -36,9 +36,8 @@ public class TesseractPlugin extends CordovaPlugin {
     private static final String TAG = "TesseractPlugin";
     private String lang = "eng";
 
-    @Override
-    public void initialize(CordovaInterface cordova, CordovaWebView webView) {
-        super.initialize(cordova, webView);
+    public TesseractPlugin() {
+        // DATA_PATH'i başlatın
         DATA_PATH = cordova.getActivity().getResources().getIdentifier("www", "drawable",
                 cordova.getActivity().getPackageName());
     }
