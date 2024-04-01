@@ -32,7 +32,7 @@ import android.util.Log;
 import android.content.Context;
 
 public class TesseractPlugin extends CordovaPlugin {
-    public static final String DATA_PATH = Environment.getExternalFilesDir(null).toString() + "/OCRFolder/";
+    public static final String DATA_PATH = Context.getExternalFilesDir(null).toString() + "/OCRFolder/";
     private static final String TAG = "TesseractPlugin";
     private String lang = "por";
 
@@ -60,7 +60,6 @@ public class TesseractPlugin extends CordovaPlugin {
             return false;
         }
     }
-
 
     private void echo(String result, CallbackContext callbackContext) {
         if (result != null && result.length() > 0) {
@@ -119,17 +118,16 @@ public class TesseractPlugin extends CordovaPlugin {
             DownloadAndCopy job = new DownloadAndCopy();
             job.execute(lang);
             try {
-            job.get(); //wait for download to complete
+                job.get(); // wait for download to complete
             } catch (Exception e) {
                 Log.v(TAG, "download task interrupted");
                 e.printStackTrace();
                 return "Interrupted";
             }
-        } else 
+        } else
             Log.v(TAG, "Found existing tessdata");
         return "Ok";
     }
-
 
     private class DownloadAndCopy extends AsyncTask<String, Void, String> {
 
@@ -138,14 +136,13 @@ public class TesseractPlugin extends CordovaPlugin {
             // do above Server call here
             try {
                 Log.v(TAG, "Downloading " + lang + ".traineddata");
-                // tess two now supports tessdata 3.04, and switching to official repo 
+                // tess two now supports tessdata 3.04, and switching to official repo
                 String stringURL = "https://github.com/tesseract-ocr/tessdata/raw/3.04.00/" + lang + ".traineddata";
                 Log.v(TAG, "downloading from url " + stringURL);
                 URL url = new URL(stringURL);
 
-		InputStream input = new BufferedInputStream(url.openStream(), 8192);
-                   		
-			
+                InputStream input = new BufferedInputStream(url.openStream(), 8192);
+
                 OutputStream out = new FileOutputStream(DATA_PATH
                         + "tessdata/" + lang + ".traineddata");
 
@@ -168,7 +165,7 @@ public class TesseractPlugin extends CordovaPlugin {
 
         @Override
         protected void onPostExecute(String message) {
-            //process message
+            // process message
             Log.v(TAG, "Download and copy done! Nothing else to do.");
         }
     }
