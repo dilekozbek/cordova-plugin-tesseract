@@ -32,12 +32,11 @@ import android.util.Log;
 import android.content.Context;
 
 public class TesseractPlugin extends CordovaPlugin {
-    public static final String DATA_PATH;
+    public static String DATA_PATH;
     private static final String TAG = "TesseractPlugin";
     private String lang = "eng";
 
     public TesseractPlugin() {
-        // DATA_PATH'i başlatın
         DATA_PATH = cordova.getActivity().getResources().getIdentifier("www", "drawable",
                 cordova.getActivity().getPackageName());
     }
