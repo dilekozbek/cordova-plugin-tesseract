@@ -183,7 +183,7 @@ public class TesseractPlugin extends CordovaPlugin {
 
         @Override
         protected void onPostExecute(String message) {
-                 Log.v(TAG, "Download and copy done! Nothing else to do.");
+            Log.v(TAG, "Download and copy done! Nothing else to do.");
         }
     }
 }
