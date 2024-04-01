@@ -129,6 +129,24 @@ public class TesseractPlugin extends CordovaPlugin {
         return "Ok";
     }
 
+    public String listFilesInDataPath() {
+        File dataPath = new File(DATA_PATH);
+        StringBuilder fileList = new StringBuilder();
+
+        if (dataPath.isDirectory()) {
+            File[] files = dataPath.listFiles();
+            if (files != null) {
+                for (File file : files) {
+                    fileList.append(file.getName()).append("\n");
+                }
+            }
+        } else {
+            fileList.append("Data path is not a directory.");
+        }
+
+        return fileList.toString();
+    }
+
     private class DownloadAndCopy extends AsyncTask<String, Void, String> {
 
         @Override
