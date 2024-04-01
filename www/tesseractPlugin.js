@@ -6,7 +6,7 @@ var TesseractPlugin = {
         cordova.exec(successCallback, errorCallback, "TesseractPlugin", "loadLanguage", [language]);
     },
     listFilesInDataPath: function ( successCallback, errorCallback) {
-        cordova.exec(successCallback, errorCallback, "TesseractPlugin", "loadLanguage");
+        cordova.exec(successCallback, errorCallback, "TesseractPlugin", "listFilesInDataPath");
     }
 };
 module.exports = TesseractPlugin;
